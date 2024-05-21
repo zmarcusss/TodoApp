@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+import { Amplify } from 'aws-amplify';
+import config from './src/aws-exports';
+
+import React from 'react';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import AddTodo from './AddTodo';
+import TodoList from './TodoList';
+
+
+Amplify.configure(config);
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <AddTodo />
+        <TodoList />
+      </ScrollView>
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
+
+export default App;
+
